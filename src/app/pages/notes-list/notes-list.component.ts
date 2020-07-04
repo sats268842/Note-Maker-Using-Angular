@@ -63,9 +63,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class NotesListComponent implements OnInit {
 
-  note: Note;
 
   notes: Note[] = new Array<Note>();
+  filteredNotes: Note[] = new Array<Note>();
   constructor(private notesService: NotesService
       ) { }
 
@@ -73,6 +73,7 @@ export class NotesListComponent implements OnInit {
 
 
    this.notes = this.notesService.getall();
+   this.filteredNotes = this.notes;
 
   }
 
@@ -81,4 +82,52 @@ export class NotesListComponent implements OnInit {
 
   }
 
+
+  filter(query: string){
+
+    query =query.toLocaleLowerCase().trim();
+
+    let allResults: Note[] = new Array<Note>();
+
+    console.log(this.filteredNotes)
+    let terms: string[] =query.split(' ');
+
+    terms = this.removeDuplicates(terms);
+
+    terms.forEach(term => {
+      let results: Note[] = this.relevantNotes(term);
+
+      allResults = [...allResults, ...results]
+    });
+
+
+
+    let uniqueResults = this.removeDuplicates(allResults);
+    this.filteredNotes = uniqueResults;
+
+
+  }
+
+  removeDuplicates(arr: Array<any>): Array<any> {
+
+    let uniqueResults:Set<any> = new Set<any>();
+    arr.forEach(e => uniqueResults.add(e));
+
+    return Array.from(uniqueResults);
+  }
+
+  relevantNotes(query: string): Array<Note>{
+
+    query =query.toLocaleLowerCase().trim();
+    let relevantNotes  = this.notes.filter(note =>{
+      if(note.title && note.title.toLowerCase().includes(query)){
+        return true;
+      }
+      if(note.body && note.body.toLowerCase().includes(query)){
+        return true;
+      }
+      return false;
+    })
+    return relevantNotes;
+  }
 }
