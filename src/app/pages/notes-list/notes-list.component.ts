@@ -73,13 +73,20 @@ export class NotesListComponent implements OnInit {
 
 
    this.notes = this.notesService.getall();
-   this.filteredNotes = this.notes;
+  //  this.filteredNotes = this.notesService.getall();
+
+  this.filter(' ')
+  }
+
+  deleteNote(note : Note){
+    let noteID = this.notesService.getId(note);
+    this.notesService.delete(noteID);
 
   }
 
-  deleteNote(id : number){
-    this.notesService.delete(id);
-
+  generateNotesUrl(note: Note){
+    let noteID = this.notesService.getId(note);
+    return noteID;
   }
 
 
@@ -104,6 +111,8 @@ export class NotesListComponent implements OnInit {
 
     let uniqueResults = this.removeDuplicates(allResults);
     this.filteredNotes = uniqueResults;
+
+    this.sortByRelevancy(allResults);
 
 
   }
@@ -130,4 +139,31 @@ export class NotesListComponent implements OnInit {
     })
     return relevantNotes;
   }
+
+  sortByRelevancy(searchResults: Note[]){
+
+    let noteCountObj: Object = {};
+
+    searchResults.forEach( note => {
+      let noteId = this.notesService.getId(note);
+
+      if(noteCountObj[noteId]){
+         noteCountObj[noteId] +=1;
+      }
+      else{
+        noteCountObj[noteId] = 1;
+      }
+    })
+
+    this.filteredNotes = this.filteredNotes.sort((a: Note, b:Note)=> {
+
+      let aId = this.notesService.getId(a);
+      let bId = this.notesService.getId(b)
+
+      let aCount = noteCountObj[aId];
+      let bCount = noteCountObj[bId];
+      return bCount - aCount;
+    })
+  }
+
 }
