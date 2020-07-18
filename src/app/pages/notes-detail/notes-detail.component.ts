@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Note } from '../../shared/note.model';
 import { NotesService } from '../../shared/notes.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DataService } from 'src/app/service/data.service';
 @Component({
   selector: 'app-notes-detail',
   templateUrl: './notes-detail.component.html',
@@ -18,7 +19,9 @@ export class NotesDetailComponent implements OnInit {
 
   constructor(private notesService: NotesService,
     private router: Router,
-    private route : ActivatedRoute) { }
+    private route : ActivatedRoute,
+    private dataService : DataService
+    ) { }
 
   ngOnInit(){
 
@@ -46,6 +49,7 @@ export class NotesDetailComponent implements OnInit {
     else{
       this.notesService.update(this.noteID, form.value.title, form.value.body)
     }
+    this.dataService.storeNotes(form.value)
     this.router.navigateByUrl('/')
   }
 
