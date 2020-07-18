@@ -3,6 +3,7 @@ import { Note } from 'src/app/shared/note.model';
 import { NotesService } from 'src/app/shared/notes.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-notes-list',
@@ -66,13 +67,21 @@ export class NotesListComponent implements OnInit {
 
   notes: Note[] = new Array<Note>();
   filteredNotes: Note[] = new Array<Note>();
-  constructor(private notesService: NotesService
+  constructor(private notesService: NotesService,
+              private dataservice : DataService
       ) { }
 
   ngOnInit(): void {
 
+    // this.dataservice.getNotes().subscribe((data) =>{
+    //   this.filteredNotes = data
+
+    // }
+    //   )
+
 
    this.notes = this.notesService.getall();
+   console.log(this.notes)
   //  this.filteredNotes = this.notesService.getall();
 
   this.filter(' ')
@@ -96,7 +105,6 @@ export class NotesListComponent implements OnInit {
 
     let allResults: Note[] = new Array<Note>();
 
-    console.log(this.filteredNotes)
     let terms: string[] =query.split(' ');
 
     terms = this.removeDuplicates(terms);
@@ -164,6 +172,7 @@ export class NotesListComponent implements OnInit {
       let bCount = noteCountObj[bId];
       return bCount - aCount;
     })
+
   }
 
 }

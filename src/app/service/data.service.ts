@@ -8,13 +8,24 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  private globalDataUrl = "http://notesappapi.herokuapp.com/notes";
 
-  storeNotes(note: Note[]) {
-    let heading = note['title'];
-    this.http.put('https://notesappapi.herokuapp.com/notes', heading).subscribe(
+  storeNotes(note) {
+    let title = note['title'];
+    let body = note['body']
+
+    const data = {'body' : body}
+    this.http.put(this.globalDataUrl+  '/' + title, data
+    ).subscribe(
       response =>{
         console.log(response)
       }
     )
+  }
+
+
+  getNotes() {
+    // console.log(this.http.get<Note[]>(this.globalDataUrl))
+   return this.http.get<Note[]>(this.globalDataUrl)
   }
 }
