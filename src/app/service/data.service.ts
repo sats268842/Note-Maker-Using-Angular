@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
 import { Note } from '../shared/note.model';
+import { NotesService } from '../shared/notes.service';
+import { map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+      private notesService : NotesService) { }
 
   private globalDataUrl = "http://notesappapi.herokuapp.com/notes";
 
@@ -15,7 +18,7 @@ export class DataService {
     let body = note['body']
 
     const data = {'body' : body}
-    this.http.put(this.globalDataUrl+  '/' + title, data
+    this.http.put('http://notesappapi.herokuapp.com/notes' + title, data
     ).subscribe(
       response =>{
         console.log(response)
@@ -26,6 +29,12 @@ export class DataService {
 
   getNotes() {
     // console.log(this.http.get<Note[]>(this.globalDataUrl))
-   return this.http.get<Note[]>(this.globalDataUrl)
+   return this.http.get<Note[]>(this.globalDataUrl).pipe(
+     tap(note =>
+      this.notesService.setNotes(note)
+      )
+   )
+  //  return this.http.get<Note[]>(this.globalDataUrl)
+
   }
 }

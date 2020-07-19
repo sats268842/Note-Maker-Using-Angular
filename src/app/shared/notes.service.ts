@@ -1,32 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Note } from './note.model';
 import { DataService } from '../service/data.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
+  private globalDataUrl = "http://notesappapi.herokuapp.com/notes";
 
   // notes: Note[] = new Array<Note>()
   notes: Note[] = new Array<Note>();
+  notes1: Note[] = new Array<Note>();
 
-  constructor(private dataService : DataService) { }
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+
+  setNotes(note){
+    // this.notes =this.notes.concat(note)
+    console.log(note)
+    // this.notes.push(...note);
+      // console.log(this.notes['0']['Notes'])
+      this.notes1 = note['Notes'];
+      this.notes.push(...this.notes1)
+    //   console.log(this.notes)
+  }
+
   getall(){
 
-    this.dataService.getNotes().subscribe((note)=>{
+    // this.dataService.getNotes().subscribe((note)=>{
+    //   // this.notes =this.dataService.getNotes()
 
+    //   // this.notes = note
 
-      // this.notes = note
-      console.log(this.notes)
-      console.log(note)
-      // this.notes.push(...note)
-      this.notes =this.notes.concat(note)
-      // this.notes.push(...note);
-      console.log(this.notes)
-    }
-
-    )
+    //   this.notes =this.notes.concat(note)
+    //   // this.notes.push(...note);
+    //   // console.log(this.notes['0']['Notes'])
+    //   this.notes1 =this.notes['0']['Notes'];
+    //   this.notes.push(...this.notes1)
+    //   console.log(this.notes)
+    // }
     console.log(this.notes)
+    // )
     return this.notes;
   }
 
@@ -42,7 +60,8 @@ export class NotesService {
   }
 
   add(note: Note){
-    this.dataService.storeNotes(note);
+  //  this.notes = [];
+
     let newlength = this.notes.push(note);
     let index = newlength - 1;
     return index;
@@ -54,7 +73,19 @@ export class NotesService {
     note.body = body;
   }
 
-  delete(id: number){
+  delete(id: number, note: Note){
     this.notes.splice(id, 1)
+
+    const data = {'title' : note['title']}
+    this.http.delete('http://notesappapi.herokuapp.com/notes/'+data['title']).subscribe(
+      response =>{
+        console.log(response)
+      }
+
+
+    )
+    console.log(this.notes)
+
+
   }
 }

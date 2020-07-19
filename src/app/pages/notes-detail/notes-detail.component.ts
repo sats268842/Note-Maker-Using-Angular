@@ -48,12 +48,15 @@ export class NotesDetailComponent implements OnInit {
     else{
       this.notesService.update(this.noteID, form.value.title, form.value.body)
     }
+    this.dataService.storeNotes(form.value);
     // this.dataService.storeNotes(form.value)
     this.router.navigateByUrl('/')
+
   }
 
   onCancel(){
     this.router.navigateByUrl('/')
+
   }
 
 }

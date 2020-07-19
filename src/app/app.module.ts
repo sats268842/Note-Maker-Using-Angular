@@ -13,6 +13,7 @@ import { NotesDetailComponent } from './pages/notes-detail/notes-detail.componen
 import { DataService } from '../app/service/data.service';
 
 import { FormsModule} from '@angular/forms';
+import { NotesService } from './shared/notes.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,7 @@ import { FormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [DataService],
+  providers: [NotesService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
