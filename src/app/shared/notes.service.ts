@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class NotesService {
-  private globalDataUrl = "http://notesappapi.herokuapp.com/notes";
+  private globalDataUrl = "https://notesappapi.herokuapp.com/notes";
 
   // notes: Note[] = new Array<Note>()
   notes: Note[] = new Array<Note>();
@@ -77,7 +77,7 @@ export class NotesService {
     this.notes.splice(id, 1)
 
     const data = {'title' : note['title']}
-    this.http.delete('https://notesappapi.herokuapp.com/notes/'+data['title']).subscribe(
+    this.http.delete(this.globalDataUrl+data['title']).subscribe(
       response =>{
         console.log(response)
       }

@@ -18,7 +18,7 @@ export class DataService {
     let body = note['body']
 
     const data = {'body' : body}
-    this.http.put('https://notesappapi.herokuapp.com/notes' + title, data
+    this.http.put(this.globalDataUrl + title, data
     ).subscribe(
       response =>{
         console.log(response)
