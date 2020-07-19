@@ -11,14 +11,14 @@ export class DataService {
   constructor(private http: HttpClient,
       private notesService : NotesService) { }
 
-  private globalDataUrl = "http://notesappapi.herokuapp.com/notes";
+  private globalDataUrl = "https://notesappapi.herokuapp.com/notes";
 
   storeNotes(note) {
     let title = note['title'];
     let body = note['body']
 
     const data = {'body' : body}
-    this.http.put('http://notesappapi.herokuapp.com/notes' + title, data
+    this.http.put('https://notesappapi.herokuapp.com/notes' + title, data
     ).subscribe(
       response =>{
         console.log(response)

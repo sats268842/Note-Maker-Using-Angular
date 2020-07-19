@@ -77,7 +77,7 @@ export class NotesService {
     this.notes.splice(id, 1)
 
     const data = {'title' : note['title']}
-    this.http.delete('http://notesappapi.herokuapp.com/notes/'+data['title']).subscribe(
+    this.http.delete('https://notesappapi.herokuapp.com/notes/'+data['title']).subscribe(
       response =>{
         console.log(response)
       }
