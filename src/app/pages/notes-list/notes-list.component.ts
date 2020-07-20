@@ -64,14 +64,20 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class NotesListComponent implements OnInit {
 
-
+  isLoading : boolean = false;
   notes: Note[] = new Array<Note>();
   filteredNotes: Note[] = new Array<Note>();
   constructor(private notesService: NotesService,
               private dataservice : DataService
-      ) { }
+      ) {
+        // setTimeout(() => {
+        //   this.isLoading = true;
+        // }, 1000);
+       }
 
   ngOnInit(): void {
+
+
     this.filteredNotes =[];
     this.notes =[];
 
@@ -177,7 +183,9 @@ export class NotesListComponent implements OnInit {
       let bCount = noteCountObj[bId];
       return bCount - aCount;
     })
+    this.isLoading = true;
 
   }
+
 
 }

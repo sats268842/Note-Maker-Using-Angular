@@ -21,7 +21,7 @@ export class DataService {
     this.http.put(this.globalDataUrl + '/' + title, data
     ).subscribe(
       response =>{
-        console.log(response)
+        // console.log(response)
       }
     )
   }
