@@ -75,9 +75,9 @@ export class NotesService {
 
   delete(id: number, note: Note){
     this.notes.splice(id, 1)
-
+    console.log(this.notes)
     const data = {'title' : note['title']}
-    this.http.delete(this.globalDataUrl+data['title']).subscribe(
+    this.http.delete(this.globalDataUrl+'/'+data['title']).subscribe(
       response =>{
         console.log(response)
       }

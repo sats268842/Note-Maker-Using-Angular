@@ -93,7 +93,7 @@ export class NotesListComponent implements OnInit {
   deleteNote(note : Note){
     let noteID = this.notesService.getId(note);
     this.notesService.delete(noteID, note);
-    this.notes = this.notesService.getall();
+    this.filteredNotes = this.notesService.getall();
 
 
   }
