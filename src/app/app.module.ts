@@ -14,6 +14,8 @@ import { DataService } from '../app/service/data.service';
 
 import { FormsModule} from '@angular/forms';
 import { NotesService } from './shared/notes.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { NotesService } from './shared/notes.service';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [NotesService, DataService],
   bootstrap: [AppComponent]
