@@ -34,7 +34,13 @@
         "name": "notes",
         "urls": [
           "https://notesappapi.herokuapp.com/notes/**"
-        ]
+        ],
+        "cacheConfig": {
+          "maxSize": 5,
+          "maxAge": "6h",
+          "timeout": "20s"
+
+        }
 
       }
     ]
