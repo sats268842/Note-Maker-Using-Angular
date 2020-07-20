@@ -12,17 +12,17 @@ export class AppComponent {
   title = 'noteapp';
 
 
-  constructor(swPush: SwPush, pushService: PushNotificationService) {
-    if (swPush.isEnabled) {
-      swPush
-        .requestSubscription({
-          serverPublicKey: VAPID_PUBLIC,
-        })
-        .then(subscription => {
-          pushService.sendSubscriptionToTheServer(subscription).subscribe()
-        })
-        .catch(console.error)
-    }
-  }
+  // constructor(swPush: SwPush, pushService: PushNotificationService) {
+  //   if (swPush.isEnabled) {
+  //     swPush
+  //       .requestSubscription({
+  //         serverPublicKey: VAPID_PUBLIC,
+  //       })
+  //       .then(subscription => {
+  //         pushService.sendSubscriptionToTheServer(subscription).subscribe()
+  //       })
+  //       .catch(console.error)
+  //   }
+  // }
 
 }
