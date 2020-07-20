@@ -14,7 +14,8 @@
           "/*.js"
         ],
         "urls": [
-         "https://kit.fontawesome.com/**"
+         "https://kit.fontawesome.com/**",
+         "https://notesappapi.herokuapp.com/notes/**"
         ]
       }
     }, {
