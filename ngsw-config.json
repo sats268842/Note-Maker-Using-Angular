@@ -14,8 +14,8 @@
           "/*.js"
         ],
         "urls": [
-         "https://kit.fontawesome.com/**",
-         "https://notesappapi.herokuapp.com/notes/**"
+         "https://kit.fontawesome.com/**"
+
         ]
       }
     }, {
@@ -28,6 +28,14 @@
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
-    }
-  ]
+    }],
+    "dataGroups": [
+      {
+        "name": "notes",
+        "urls": [
+          "https://notesappapi.herokuapp.com/notes/**"
+        ]
+
+      }
+    ]
 }
