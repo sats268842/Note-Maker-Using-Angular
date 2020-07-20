@@ -9,7 +9,7 @@ const VAPID_PUBLIC = 'BAdnh6Fd3yHF0HQucQgo1qm9A9flPT_XurCGiByJoTvdQes76IXZK4IVOS
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'noteapp';
+  title = 'ScrapBook';
 
 
   // constructor(swPush: SwPush, pushService: PushNotificationService) {
