@@ -5,17 +5,19 @@
   <form #noteForm="ngForm" (ngSubmit)="onSubmit(noteForm)">
 
     <div class="field">
-      <label for="title" class="label">Title</label>
+      <label for="title" class="label">Title
       <div class="control">
         <input type="text" name="title" [ngModel]="note.title" required class="input" label="title">
       </div>
+    </label>
     </div>
     <br/>
     <div class="field">
-      <label for="body" class="label">Body</label>
+      <label for="body" class="label">Body
       <div class="control">
         <textarea name="body" id="" cols="30" rows="10" [ngModel]="note.body"  class="textarea" label="body"></textarea>
       </div>
+    </label>
     </div>
 
     <div class="field is-grouped is-pulled-right">
