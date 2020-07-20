@@ -21,7 +21,7 @@ export class NotesService {
 
   setNotes(note){
     // this.notes =this.notes.concat(note)
-    console.log(note)
+    // console.log(note)
     // this.notes.push(...note);
       // console.log(this.notes['0']['Notes'])
       this.notes1 = note['Notes'];
@@ -43,14 +43,14 @@ export class NotesService {
     //   this.notes.push(...this.notes1)
     //   console.log(this.notes)
     // }
-    console.log(this.notes)
+    // console.log(this.notes)
     // )
     return this.notes;
   }
 
   get(id:number){
 
-    console.log(this.notes[id])
+    // console.log(this.notes[id])
     return this.notes[id];
 
   }
@@ -75,16 +75,16 @@ export class NotesService {
 
   delete(id: number, note: Note){
     this.notes.splice(id, 1)
-    console.log(this.notes)
+    // console.log(this.notes)
     const data = {'title' : note['title']}
     this.http.delete(this.globalDataUrl+'/'+data['title']).subscribe(
       response =>{
-        console.log(response)
+        // console.log(response)
       }
 
 
     )
-    console.log(this.notes)
+    // console.log(this.notes)
 
 
   }
