@@ -10,6 +10,7 @@ import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader'
   imports: [
     AppModule,
     ServerModule,
+    ModuleMapLoaderModule
   ],
   bootstrap: [AppComponent],
 })
